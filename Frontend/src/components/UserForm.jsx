@@ -30,7 +30,7 @@ function UserForm({ user = {}, onSave }) {
   };
 
   return (
-    <form className="flex flex-col gap-4 w-[330px]" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-4 sm:w-[330px]" onSubmit={handleSubmit}>
       <TextField
         value={name}
         label="Name"

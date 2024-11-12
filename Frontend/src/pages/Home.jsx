@@ -56,10 +56,10 @@ function HomePage() {
 
   return (
     <>
-      <div className="px-12">
+      <div className="sm:px-12">
         {/* <h1>User List</h1> */}
         <button
-          className="px-4 py-2 my-4 font-semibold text-white bg-green-500 rounded hover:scale-[1.01] active:scale-100"
+          className="px-4 py-2 my-4 font-semibold text-white bg-green-500 rounded hover:scale-[1.01] active:scale-100 ml-2 sm:ml-0 sm:text-base text-sm"
           onClick={() => {
             console.log("add new user");
             setIsAddUserPopupOpen(true);
@@ -67,20 +67,20 @@ function HomePage() {
         >
           Add New User
         </button>
-        <table className="flex flex-col border-[1px] border-gray-300 rounded-lg overflow-hidden mb-5">
+        <table className="flex flex-col border-[1px] border-gray-300 sm:rounded-lg overflow-hidden mb-5">
           <thead className="text-white bg-sky-500 ">
-            <tr className="flex justify-between py-4 text-lg ">
+            <tr className="flex justify-between py-4 text-sm sm:text-lg">
               <th className="w-[25%] text-center">Name</th>
-              <th className="w-[25%] text-center">Email</th>
+              <th className="sm:w-[25%] w-[35%] text-center">Email</th>
               <th className="w-[25%] text-center">Date of Birth</th>
-              <th className="w-[25%] text-center">Actions</th>
+              <th className="sm:w-[25%] w-[15%] text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="">
             {users?.map((user) => (
               <tr
                 key={user._id}
-                className="flex justify-between flex-1 w-full py-2 border-b-[1px]  border-gray-300"
+                className="flex justify-between flex-1 w-full py-2 border-b-[1px] sm:text-base text-sm border-gray-300"
               >
                 <User
                   user={user}
