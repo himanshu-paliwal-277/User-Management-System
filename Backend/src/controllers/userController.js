@@ -44,8 +44,9 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const dataToUpdate = req.body;
-    const updatedUser = await updateUserService(id, dataToUpdate);
+    const updatedUserData = req.body;
+    console.log("dataToUpdate = ", updatedUserData);
+    const updatedUser = await updateUserService(id, updatedUserData);
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found." });
     }
@@ -55,7 +56,7 @@ export const updateUser = async (req, res) => {
       data: updatedUser,
     });
   } catch (error) {
-    res.status(400).json({
+    res.status(400).json({ 
       message: "Error updating user",
       error: error,
     });

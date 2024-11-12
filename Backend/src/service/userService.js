@@ -21,9 +21,10 @@ export const createUserService = async (name, email, dateOfBirth) => {
     throw error;
   }
 };
-export const updateUserService = async (id, updatedUser) => {
+export const updateUserService = async (id, updatedUserData) => {
   try {
-    const user = await updateUser(id, updatedUser);
+    console.log("data in service layer dataToUpdate = ", updatedUserData);
+    const user = await updateUser(id, updatedUserData);
     return user;
   } catch (error) {
     console.log("error updating user");

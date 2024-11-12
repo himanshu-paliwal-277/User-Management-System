@@ -17,20 +17,43 @@ export const createNewUser = async (name, email, dateOfBirth) => {
     throw error;
   }
 };
-export const updateUser = async (id, updatedUser) => {
+export const updateUser = async (id, updatedUserData) => {
   try {
-    if (updatedUser.email) {
-      const existingUser = await User.findOne({ email: updatedUser.email });
+    if (updatedUserData.email) {
+      // Check if the email already exists
+      const existingUser = await User.findOne({ email: updatedUserData.email });
       if (existingUser && existingUser._id.toString() !== id) {
-        throw "this email already exists";
+        throw new Error("This email already exists");
       }
     }
-    const user = await User.findByIdAndUpdate(id, updatedUser, { new: true });
+
+    console.log("data in repository layer dataToUpdate = ", updatedUserData);
+
+    // Update user data
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        name: updatedUserData.name,
+        email: updatedUserData.email,
+        dateOfBirth: updatedUserData.dateOfBirth,
+      },
+      { new: true } // Option to return the updated user object
+    );
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
     return user;
   } catch (error) {
-    throw error;
+    // Log the error and throw it with a custom message
+    console.error("Error updating user: ", error);
+    throw new Error(
+      error.message || "An error occurred while updating the user"
+    );
   }
 };
+
 export const deleteUser = async (id) => {
   try {
     const user = await User.findByIdAndDelete(id);
