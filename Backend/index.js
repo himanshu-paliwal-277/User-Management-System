@@ -11,6 +11,7 @@ const app = express();
 const corsOptions = {
   origin: [
     "http://localhost:5173", // Local development URL on port 5173
+    "https://user-management-system-frontend.netlify.app", // Production URL
   ],
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
   credentials: true, // Allow credentials (if needed)
