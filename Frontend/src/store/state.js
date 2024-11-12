@@ -23,8 +23,8 @@ const store = create((set) => ({
   },
 
   // updating user
-  updateUser: async (id, updateUserData) => {
-    const data = await updateUserService(id, updateUserData);
+  updateUser: async (id, updatedUserData) => {
+    const data = await updateUserService(id, updatedUserData);
     set((state) => ({
       users: state.users.map((user) => (user._id === id ? data : user)),
     }));
